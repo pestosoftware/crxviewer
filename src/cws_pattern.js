@@ -210,6 +210,7 @@ function get_webstore_url(url) {
 
 // Return the suggested name of the zip file.
 function get_zip_name(url, /*optional*/filename) {
+    //https://chromewebstore.google.com/detail/web-client-for-instagram/cfegchignldpfnjpodhcklmgleaoanhi
     if (!filename) {
         var extensionID = get_extensionID(url);
         if (!extensionID) {
@@ -262,13 +263,13 @@ function is_cors_enabled_download_url(url) {
 // same result as the requested URL, sans restrictions.
 function get_equivalent_download_url(url) {
     var requestUrl = url;
-//#if WEB
+    //#if WEB
     if (/^https?:/.test(url) && !is_cors_enabled_download_url(url)) {
         // Proxy request through CORS Anywhere.
         requestUrl = 'https://cors-anywhere.herokuapp.com/' + url;
     }
-//#endif
-//#if OPERA
+    //#endif
+    //#if OPERA
     // Opera blocks access to addons.opera.com. Let's bypass this restriction.
     // Unfortunately, there is no way to retrieve the .crx file in an ordinary way.
     // If given the extension ID, it is possible to fetch
@@ -280,7 +281,7 @@ function get_equivalent_download_url(url) {
     if (ows_download_pattern.test(url)) {
         requestUrl = 'https://cors-anywhere.herokuapp.com/' + url;
     }
-//#endif
+    //#endif
     return requestUrl;
 }
 
@@ -353,10 +354,10 @@ function getParam(name, querystring) { // Assume name contains no RegEx-specific
 
 function encodeQueryString(params) {
     var parts = [];
-    Object.keys(params).forEach(function(key) {
+    Object.keys(params).forEach(function (key) {
         var value = params[key];
         if (Array.isArray(value)) {
-            value.forEach(function(value2) {
+            value.forEach(function (value2) {
                 parts.push(encodeQueryStringPart(key + '[]', value2));
             });
         } else if (value !== void 0) {

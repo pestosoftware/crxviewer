@@ -30,7 +30,8 @@
         "storage",
         "contextMenus",
         "downloads",
-        "declarativeContent"
+        "declarativeContent",
+        "<all_urls>"
     ],
     "host_permissions": [
         "*://clients2.google.com/service/update2/crx*",
